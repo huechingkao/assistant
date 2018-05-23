@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <h1>我的日誌：</h1>
+        <table>
+          <tr><td>時間</td><td>項目</td><td>功能</td></tr>
+{% for diary in diary_list %}          
+          <tr><td>({{diary.time| date:"l"}}){{diary.time}}</td></td><td><a href="diary/{{diary.id}}/update/">{{diary.memo}}</a></td><td><a href="diary/{{diary.id}}/delete/">刪除</a></td></tr>
+{% endfor %}           
+        </table>
+    		{% load pagination %}
+        {% get_pagination %}
+{% endblock %}

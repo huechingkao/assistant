@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>我的帳本：</h1>
+  <table>
+    <tr>
+    <td>時間</td>
+    <td>項目</td>
+    <td>類別</td>
+    <td>金額</td>
+    <td>功能</td></tr>
+    {% for money in money_list %}          
+    <tr>
+      <td>({{money.time| date:"l"}}){{money.time}}</td></td>
+      <td><a href="money/{{money.id}}/update/">{{money.item}}</td>
+      <td>{{money.get_kind_display}}</td><td>{{money.price}}</a></td>
+    　<td><a href="money/{{money.id}}/delete/">刪除</a></td>
+    </tr>
+    {% endfor %}           
+  </table>
+ {% endblock %}

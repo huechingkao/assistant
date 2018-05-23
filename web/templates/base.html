@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <h1>數位助理</h1>
+    {% if user.is_authenticated %}
+    <a href="/">日記</a>
+    <a href="/web/diary/create">寫日誌</a>  
+    <a href="/web/money">帳本</a>
+    <a href="/web/money/create">記帳</a>    
+    {{ user.username }} <a href="/accounts/logout">登出</a>
+    {% endif %}  
+  {% block content %}
+  {% endblock %}        
+</body>
+</html>
