@@ -1,13 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <h1>我的日誌：</h1>
-        <table>
-          <tr><td>時間</td><td>項目</td><td>功能</td></tr>
-{% for diary in diary_list %}          
-          <tr><td>({{diary.time| date:"l"}}){{diary.time}}</td></td><td><a href="diary/{{diary.id}}/update/">{{diary.memo}}</a></td><td><a href="diary/{{diary.id}}/delete/">刪除</a></td></tr>
-{% endfor %}           
-        </table>
-    		{% load pagination %}
-        {% get_pagination %}
+  <h1><i class="fas fa-book"></i> 我的日誌：</h1>
+  <table class="table table-sm">
+    <tr><td>時間</td><td>項目</td><td>功能</td></tr>
+    {% for diary in diary_list %}
+    <tr>
+      <td>({{diary.time| date:"l"}}){{diary.time}}</td>
+      <td><a href="diary/{{diary.id}}/update/">{{diary.memo}}</a></td>
+      <td><a href="diary/{{diary.id}}/delete/" class="btn btn-sm btn-danger py-0 px-1"><i class="fas fa-trash-alt"></i> 刪除</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% load pagination %}
+  {% get_pagination %}
+{% endblock %}
+
+{% block content1 %}
+<div class="card">
+  <div class="card-header h3"><i class="fas fa-book"></i> 我的日誌</div>
+  <div class="card-body">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>時間</th>
+          <th>項目</th>
+          <th>功能</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for diary in diary_list %}
+        <tr>
+          <td>{{diary.time|date:"Y-m-d H:i"}}</td></td>
+          <td><a href="diary/{{diary.id}}/update/">{{diary.memo}}</a></td>
+          <td><a href="diary/{{diary.id}}/delete/">刪除</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    {% load pagination %}
+    {% get_pagination %}
+  </div>
+</div>
 {% endblock %}

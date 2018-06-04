@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>我的帳本：</h1>
-  <table>
+  <h1><i class="fas fa-money-check"></i> 我的帳本：</h1>
+  <table class="table table-sm">
     <tr>
-    <td>時間</td>
-    <td>項目</td>
-    <td>類別</td>
-    <td>金額</td>
-    <td>功能</td></tr>
-    {% for money in money_list %}          
-    <tr>
-      <td>({{money.time| date:"l"}}){{money.time}}</td></td>
-      <td><a href="money/{{money.id}}/update/">{{money.item}}</td>
-      <td>{{money.get_kind_display}}</td><td>{{money.price}}</a></td>
-    　<td><a href="money/{{money.id}}/delete/">刪除</a></td>
+      <td>時間</td>
+      <td>項目</td>
+      <td>類別</td>
+      <td>金額</td>
+      <td>功能</td>
     </tr>
-    {% endfor %}           
+    {% for money in money_list %}
+    <tr>
+      <td>({{money.time| date:"l"}}){{money.time}}</td>
+      <td><a href="money/{{money.id}}/update/">{{money.item}}</a></td>
+      <td>{{money.get_kind_display}}</td>
+      <td>{{money.price}}</td>
+      <td><a href="money/{{money.id}}/delete/" class="btn btn-sm btn-danger py-0 px-1"><i class="fas fa-trash-alt"></i> 刪除</a></td>
+    </tr>
+    {% endfor %}
   </table>
- {% endblock %}
+  {% load pagination %}
+  {% get_pagination %}
+{% endblock %}
